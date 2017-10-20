@@ -1,5 +1,10 @@
 package algo.sortingandsearching;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.Random;
+
 /**
  * Created by sherxon on 2016-12-16.
  */
@@ -34,8 +39,29 @@ public class InsertionSort {
         }
     }
 
+    //比sortSimple1要快,数据交换很浪费性能?
+    public static void sortSimple2(int[] a) {
+        for (int i = 1; i < a.length; i++) {
+            int j=i;
+            int temp = a[i];
+            for (; j > 0 && temp <a[j-1]; j--) {
+                    a[j]= a[j - 1];
+            }
+            a[j] = temp;
+        }
+    }
+
+    static void sortSimple3(int[] a) {
+        for (int i = 1; i < a.length; i++) {
+            int j = i;
+            int current = a[i];
+            while (j > 0 && current < a[j - 1])
+                a[j] = a[--j];
+            a[j] = current;
+        }
+    }
     //simple version,  easy to understand.
-    public static void sortSimple(int[] a) {
+    public static void sortSimple1(int[] a) {
 
         for (int i = 1; i < a.length; i++) {
             for (int j = i; j > 0; j--) {
@@ -49,5 +75,42 @@ public class InsertionSort {
 
     }
 
+    public static void main(String[] args) {
+        int[] a = getInts();
+        Instant start = Instant.now();
+        //sortSimple1(a);
+        //sortSimple2(a);
+        //sortSimple3(a);
+        SelectionSort.sortSimple1(a);
+        Instant end = Instant.now();
+        Duration between = Duration.between(start,end);
+        System.out.println(Arrays.toString(a));
+        System.out.println(between);
+    }
 
+    public static int[] getInts() {
+        int[] a= new int[100000];
+        for (int i = 0; i < a.length; i++) {
+            a[i] =100000-i;
+        }
+        return a;
+    }
+
+     void test2() {
+        Integer[] a = getIntegers();
+        Instant start = Instant.now();
+        sortBySwap(a);
+        Instant end = Instant.now();
+        Duration between = Duration.between(start,end);
+        System.out.println(Arrays.toString(a));
+        System.out.println(between);
+    }
+
+    private static Integer[] getIntegers() {
+        Integer[] a= new Integer[100000];
+        for (int i = 0; i < a.length; i++) {
+            a[i] =100000-i;
+        }
+        return a;
+    }
 }

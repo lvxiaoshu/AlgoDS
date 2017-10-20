@@ -27,4 +27,9 @@ public class InsertionSortList {
         a.val=b.val;
         b.val=temp;
     }
+
+    public static void main(String[] args) {
+        InsertionSortList insertionSortList = new InsertionSortList();
+        insertionSortList.insertionSortList(new ListNode(1));
+    }
 }

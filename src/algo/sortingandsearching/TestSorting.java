@@ -7,6 +7,7 @@ import java.util.Arrays;
  */
 public class TestSorting {
     public static void main(String[] args) {
+        System.out.println(3/2);
         int n = (int) (Math.random() * 10);
         for (int i = 0; i < n; i++) {
             //Integer[] a = new Integer[n];
@@ -16,8 +17,6 @@ public class TestSorting {
             }
             System.out.print(Arrays.toString(a) + " ==>> ");
             CountingSort.sort(a);
-
-
         }
     }
 }
